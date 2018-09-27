@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
     },
     textLogin: {
         color: 'rgba(0, 0, 0, 0.5)',
-        fontSize: 16,
+        fontSize: 18,
+        fontWeight: '200',
         marginLeft: 15,
         textAlign: 'left',
     },

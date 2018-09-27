@@ -10,12 +10,12 @@
 //react-native run-android
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Login from './src/components/Login';
+import Register from './src/components/Register';
 export default class App extends Component {
     render() {
         return (
             <View>
-                <Login></Login>
+                <Register></Register>
             </View>
         );
     }
