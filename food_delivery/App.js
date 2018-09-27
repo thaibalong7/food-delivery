@@ -10,12 +10,14 @@
 //react-native run-android
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Register from './src/components/Register';
+import Login from './src/components/Login'
+import Register from './src/components/Register'
+import ForgetPassword from './src/components/ForgetPassword';
 export default class App extends Component {
     render() {
         return (
             <View>
-                <Register></Register>
+                <ForgetPassword></ForgetPassword>
             </View>
         );
     }

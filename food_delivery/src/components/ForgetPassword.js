@@ -9,20 +9,12 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const { width: WIDTH } = Dimensions.get('window');
 
-export default class Register extends Component {
+export default class ForgetPassword extends Component {
     render() {
         return (
             <ImageBackground style={styles.backgroundContainer}>
                 <View style={styles.textTitleContainer}>
-                    <Text style={styles.textTitle}>Register</Text>
-                </View>
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={'Full Name'}
-                        placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
-                        underlineColorAndroid='transparent'
-                    />
+                    <Text style={styles.textTitle}>Forget Password</Text>
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput
@@ -35,7 +27,7 @@ export default class Register extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
-                        placeholder={'Password'}
+                        placeholder={'New Password'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
                         secureTextEntry={true}
@@ -50,22 +42,15 @@ export default class Register extends Component {
                         secureTextEntry={true}
                     />
                 </View>
-
-                <TouchableOpacity style={styles.btnRegister} >
-                    <Text style={styles.textRegister}>Register</Text>
+                <TouchableOpacity style={styles.btnResetPassword} >
+                    <Text style={styles.textResetPassword}>Reset Password</Text>
                     <Icon name={'angle-right'} size={26} color={'rgba(0, 0, 0, 0.7)'} style={styles.iconAngle} />
                 </TouchableOpacity>
-                <View style={styles.loginHere}>
-                    <Text style={styles.textAlready}>Already a member? </Text>
-                    <TouchableOpacity>
-                        <Text style={styles.textLoginHere}>Login here</Text>
-
-                    </TouchableOpacity>
-                </View>
             </ImageBackground>
-        );
-    }
+        )
+    };
 }
+
 const styles = StyleSheet.create({
     backgroundContainer: {
         // flex: 1,
@@ -97,7 +82,7 @@ const styles = StyleSheet.create({
         color: 'rgba(0, 0, 0, 0.7)',
         marginHorizontal: 25
     },
-    btnRegister: {
+    btnResetPassword: {
         width: WIDTH - 55,
         height: 45,
         borderRadius: 25,
@@ -110,25 +95,11 @@ const styles = StyleSheet.create({
         top: 8,
         right: 20
     },
-    textRegister: {
+    textResetPassword: {
         color: 'rgba(0, 0, 0, 0.6)',
         fontSize: 18,
         fontWeight: '500',
         marginLeft: 15,
         textAlign: 'left',
     },
-    loginHere: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 10
-    },
-    textAlready: {
-        fontSize: 12
-    },
-    textLoginHere: {
-        fontSize: 12,
-        fontWeight: '300',
-        color: '#C6FF00'
-    },
-
 });

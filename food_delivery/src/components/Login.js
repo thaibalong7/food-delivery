@@ -20,7 +20,7 @@ export default class Login extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
-                        placeholder={'Username'}
+                        placeholder={'Email'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
                     />
@@ -52,7 +52,7 @@ export default class Login extends Component {
 
                 <TouchableOpacity style={styles.btnLogin} >
                     <Text style={styles.textLogin}>Login</Text>
-                    <Icon name={'angle-right'} size={26} color={'rgba(0, 0, 0, 0.7)'} style={styles.iconLogin} />
+                    <Icon name={'angle-right'} size={26} color={'rgba(0, 0, 0, 0.7)'} style={styles.iconAngle} />
                 </TouchableOpacity>
             </ImageBackground>
         );
@@ -114,13 +114,13 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     textLogin: {
-        color: 'rgba(0, 0, 0, 0.5)',
+        color: 'rgba(0, 0, 0, 0.6)',
         fontSize: 18,
-        fontWeight: '200',
+        fontWeight: '500',
         marginLeft: 15,
         textAlign: 'left',
     },
-    iconLogin: {
+    iconAngle: {
         position: 'absolute',
         top: 8,
         right: 20
