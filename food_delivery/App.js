@@ -13,11 +13,13 @@ import { View } from 'react-native';
 import Login from './src/components/Login'
 import Register from './src/components/Register'
 import ForgetPassword from './src/components/ForgetPassword';
+import MerchantDetail from './src/components/MerchantDetail';
+import ItemOfList from './src/components/ItemOfListMerchantDetail';
 export default class App extends Component {
     render() {
         return (
             <View>
-                <ForgetPassword></ForgetPassword>
+                <MerchantDetail></MerchantDetail>
             </View>
         );
     }
