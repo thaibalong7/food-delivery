@@ -14,12 +14,14 @@ import Login from './src/components/Login'
 import Register from './src/components/Register'
 import ForgetPassword from './src/components/ForgetPassword';
 import MerchantDetail from './src/components/MerchantDetail';
-import ItemOfList from './src/components/ItemOfListMerchantDetail';
+import ItemOfListMerchantDetail from './src/components/ItemOfListMerchantDetail';
+import Merchant from './src/components/Merchant';
+import ItemOfListMerchant from './src/components/ItemOfListMerchant'
 export default class App extends Component {
     render() {
         return (
             <View>
-                <MerchantDetail></MerchantDetail>
+                <Merchant></Merchant>
             </View>
         );
     }

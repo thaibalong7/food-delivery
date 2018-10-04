@@ -43,6 +43,4 @@ const styles = StyleSheet.create({
     itemList:{
         marginTop: 10,
     }
-
-
 })
