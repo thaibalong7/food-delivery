@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     textMore: {
-        color: 'blue',
+        color: '#FFA726',
         marginLeft: 2 * WIDTH / 3 - 70,
         marginRight: 0
     }

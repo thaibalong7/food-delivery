@@ -8,11 +8,12 @@ import {
 const { width: WIDTH,
     height: HEIGHT } = Dimensions.get('window');
 import food from '../img/demo_food.jpg'
+import { Actions } from 'react-native-router-flux';
 export default class ItemOfListMerchant extends Component {
     render() {
         return (
             <View>
-                <TouchableOpacity style={styles.itemContainer}>
+                <TouchableOpacity style={styles.itemContainer} onPress={()=>{Actions.merchantDetail()}}>
                     <Image style={styles.imgItem} blurRadius={0.9} source={food}></Image>
                     <View style={styles.absoluteView}>
                         <Text style={styles.textItem}>Name of store</Text>

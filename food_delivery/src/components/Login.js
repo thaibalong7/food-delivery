@@ -3,23 +3,33 @@ import {
     StyleSheet, View,
     Text, ImageBackground,
     TextInput, Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
-import bgloginImage from '../img/login_background.jpg'
+import bgloginImage from '../img/food_background_02.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { Actions } from 'react-native-router-flux';
 
 const { width: WIDTH } = Dimensions.get('window');
 export default class Login extends Component {
+    constructor() {
+        super();
+        this.state = { hidePassword: true }
+    }
+    managePasswordVisibility = () => {
+        this.setState({ hidePassword: !this.state.hidePassword });
+    }
     render() {
         return (
-            <ImageBackground style={styles.backgroundContainer}>
+            <ImageBackground source={bgloginImage} style={styles.backgroundContainer} blurRadius={1}>
                 <View style={styles.logoContainer}>
-                    {/* <Image source = {} style = {styles.logo}/> */}
+                    {/* <Image source = {bgloginImage} style = {styles.logo} blurRadius={1}/> */}
                     <Text style={styles.logoText}>FOOD DELIVERY</Text>
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
+                        autoCapitalize = {'none'}
                         placeholder={'Email'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
@@ -30,29 +40,30 @@ export default class Login extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
+                        autoCapitalize = {'none'}
                         placeholder={'Password'}
-                        secureTextEntry={true}
+                        secureTextEntry={this.state.hidePassword}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
                     />
                     <Icon name={'lock'} size={24} color={'rgba(0, 0, 0, 0.7)'} style={styles.inputIcon} />
-                    <TouchableOpacity style={styles.bntEye}>
-                        <Icon name={'eye'} size={24} color={'rgba(0, 0, 0, 0.7)'}></Icon>
+                    <TouchableOpacity style={styles.bntEye} onPress = { this.managePasswordVisibility }>
+                        <Icon name={this.state.hidePassword ? 'eye' : 'eye-slash'} size={24} color={'rgba(0, 0, 0, 0.7)'}></Icon>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.viewAcc}>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={() => Actions.register()}>
                         <Text style={styles.textCreateAccount}>Create a account</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={() => Actions.forgetPassword()}>
                         <Text style={styles.textForgetPassword}>Forget password</Text>
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.btnLogin} >
+                <TouchableOpacity style={styles.btnLogin} onPress={() => { Actions.merchant() }}>
                     <Text style={styles.textLogin}>Login</Text>
-                    <Icon name={'angle-right'} size={26} color={'rgba(0, 0, 0, 0.7)'} style={styles.iconAngle} />
+                    <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={styles.iconAngle} />
                 </TouchableOpacity>
             </ImageBackground>
         );
@@ -65,11 +76,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: '#6699ff'
+        backgroundColor: '#ffc299'
     },
     logoContainer: {
         alignItems: 'center',
-        marginBottom: 50
+        marginBottom: 100
     },
     logo: {
         width: 120,
@@ -79,8 +90,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30,
         fontWeight: '500',
-        marginTop: 5,
-        opacity: 0.3
+        marginTop: 10,
+        opacity: 1,
+        textShadowColor: 'rgba(128, 128, 128, 0.75)',
+        textShadowOffset: { width: 3, height: 3 },
+        textShadowRadius: 20
     },
     inputContainer: {
         marginTop: 10,
@@ -109,12 +123,12 @@ const styles = StyleSheet.create({
         width: WIDTH - 55,
         height: 45,
         borderRadius: 25,
-        backgroundColor: '#C6FF00',
+        backgroundColor: '#EF6C00',
         justifyContent: 'center',
         marginTop: 30
     },
     textLogin: {
-        color: 'rgba(0, 0, 0, 0.6)',
+        color: 'rgba(255, 255, 255, 1)',
         fontSize: 18,
         fontWeight: '500',
         marginLeft: 15,
@@ -132,11 +146,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     textCreateAccount: {
-        color: 'rgba(0, 0, 0, 0.5)',
+        color: 'rgba(255, 255, 255, 0.9)',
         fontSize: 13,
     },
-    textForgetPassword:{
-        color: 'rgba(0, 0, 0, 0.5)',
+    textForgetPassword: {
+        color: 'rgba(255, 255, 255, 0.9)',
         fontSize: 13,
     }
 });

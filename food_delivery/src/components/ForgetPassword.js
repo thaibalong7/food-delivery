@@ -6,7 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
-
+import background from '../img/backgrount_orange.jpg'
 const { width: WIDTH } = Dimensions.get('window');
 
 export default class ForgetPassword extends Component {
@@ -19,6 +19,7 @@ export default class ForgetPassword extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
+                        autoCapitalize = {'none'}
                         placeholder={'Email'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
@@ -27,6 +28,7 @@ export default class ForgetPassword extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
+                        autoCapitalize = {'none'}
                         placeholder={'New Password'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
@@ -36,6 +38,7 @@ export default class ForgetPassword extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
+                        autoCapitalize = {'none'}
                         placeholder={'Confirm Password'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
@@ -44,7 +47,7 @@ export default class ForgetPassword extends Component {
                 </View>
                 <TouchableOpacity style={styles.btnResetPassword} >
                     <Text style={styles.textResetPassword}>Reset Password</Text>
-                    <Icon name={'angle-right'} size={26} color={'rgba(0, 0, 0, 0.7)'} style={styles.iconAngle} />
+                    <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={styles.iconAngle} />
                 </TouchableOpacity>
             </ImageBackground>
         )
@@ -59,15 +62,19 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         width: '100%',
         height: '100%',
-        backgroundColor: '#6699ff'
+        backgroundColor: 'white'
     },
     textTitleContainer: {
         marginBottom: 50,
     },
     textTitle: {
-        color: 'white',
+        color: '#E65100',
         fontSize: 25,
         fontWeight: '500',
+        opacity: 1,
+        textShadowColor: 'rgba(255, 204, 128, 0.75)',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 20
     },
     inputContainer: {
         marginTop: 15,
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         fontSize: 16,
         paddingLeft: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: 'rgba(255, 243, 224, 0.7)',
         color: 'rgba(0, 0, 0, 0.7)',
         marginHorizontal: 25
     },
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
         width: WIDTH - 55,
         height: 45,
         borderRadius: 25,
-        backgroundColor: '#C6FF00',
+        backgroundColor: '#EF6C00',
         justifyContent: 'center',
         marginTop: 35,
     },
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
         right: 20
     },
     textResetPassword: {
-        color: 'rgba(0, 0, 0, 0.6)',
+        color: 'rgba(255, 255, 255, 1)',
         fontSize: 18,
         fontWeight: '500',
         marginLeft: 15,

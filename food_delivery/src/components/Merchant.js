@@ -4,6 +4,7 @@ import {
     FlatList,
 } from 'react-native';
 import ItemOfListMerchant from './ItemOfListMerchant'
+import { Actions } from 'react-native-router-flux';
 
 export default class Merchant extends Component {
     render() {
