@@ -31,6 +31,7 @@ export default class Register extends Component {
                         style={styles.input}
                         autoCapitalize = {'none'}
                         placeholder={'Email'}
+                        keyboardType={'email-address'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
                     />
@@ -62,7 +63,7 @@ export default class Register extends Component {
                 </TouchableOpacity>
                 <View style={styles.loginHere}>
                     <Text style={styles.textAlready}>Already a member ? </Text>
-                    <TouchableOpacity onPress={()=>Actions.login()}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
                         <Text style={styles.textLoginHere}>Login here</Text>
                     </TouchableOpacity>
                 </View>

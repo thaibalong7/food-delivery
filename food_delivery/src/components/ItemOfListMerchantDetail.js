@@ -16,9 +16,9 @@ export default class ItemOfListMerchantDetail extends Component {
                 <View style={styles.itemInfoContainer}>
                     <View>
                         <Text style={styles.textTitle}>Name of food</Text>
-                        <Text style={styles.textDecription}>Decription of that food kkkkk</Text>
+                        <Text style={styles.textDecription}>Decription of that food kkkk kkkk kkkkk kkkkk kkkkkk</Text>
                     </View>
-                    <TouchableOpacity style={styles.c}>
+                    <TouchableOpacity style={styles.textMoreContainer}>
                         <Text style={styles.textMore}>More...</Text>
                     </TouchableOpacity>
                 </View>
@@ -29,8 +29,9 @@ export default class ItemOfListMerchantDetail extends Component {
 
 const styles = StyleSheet.create({
     itemContainer: {
+        backgroundColor: 'white',
         borderWidth: 1,
-        borderRadius: 2,
+        borderRadius: 10,
         borderColor: '#ddd',
         borderBottomWidth: 0,
         shadowColor: '#000',
@@ -44,11 +45,12 @@ const styles = StyleSheet.create({
         marginRight: 4,
     },
     imgItem: {
+        borderRadius: 8,
         marginLeft: 1,
         marginTop: 1,
         marginBottom: 1,
-        height: WIDTH / 3 - 10,
-        width: WIDTH / 3 - 10,
+        height: WIDTH / 3 - 15,
+        width: WIDTH / 3 - 15,
     },
     itemInfoContainer: {
         paddingLeft: 4,

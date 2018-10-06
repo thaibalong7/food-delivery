@@ -10,7 +10,7 @@ import ItemOfListMerchantDetail from './ItemOfListMerchantDetail'
 export default class MerchantDetail extends Component {
     render() {
         return (
-            <View>
+            <View style={styles.merchantContainer}>
                 <FlatList
                     data={[{ key:'1',decription: 'aaaaaaaaaaaaaaaaaa' }, 
                     { key:'2',decription: 'bbbbbbbbbbbbbbbbbb' },
@@ -40,6 +40,9 @@ export default class MerchantDetail extends Component {
 };
 
 const styles = StyleSheet.create({
+    merchantContainer:{
+        backgroundColor: 'floralwhite'
+    },
     itemList:{
         marginTop: 10,
     }

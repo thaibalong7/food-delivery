@@ -21,6 +21,7 @@ export default class ForgetPassword extends Component {
                         style={styles.input}
                         autoCapitalize = {'none'}
                         placeholder={'Email'}
+                        keyboardType={'email-address'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
                     />

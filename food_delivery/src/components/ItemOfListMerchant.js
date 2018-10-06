@@ -13,7 +13,7 @@ export default class ItemOfListMerchant extends Component {
     render() {
         return (
             <View>
-                <TouchableOpacity style={styles.itemContainer} onPress={()=>{Actions.merchantDetail()}}>
+                <TouchableOpacity style={styles.itemContainer} onPress={()=>{Actions.push("tabbar")}}>
                     <Image style={styles.imgItem} blurRadius={0.9} source={food}></Image>
                     <View style={styles.absoluteView}>
                         <Text style={styles.textItem}>Name of store</Text>
@@ -27,7 +27,7 @@ export default class ItemOfListMerchant extends Component {
 const styles = StyleSheet.create({
     itemContainer: {
         borderWidth: 1,
-        borderRadius: 2,
+        borderRadius: 5,
         borderColor: '#ddd',
         borderBottomWidth: 0,
         shadowColor: '#000',
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     imgItem: {
+        borderRadius: 5,
         marginLeft: 1,
         marginTop: 1,
         marginBottom: 1,

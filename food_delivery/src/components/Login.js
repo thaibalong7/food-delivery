@@ -21,7 +21,7 @@ export default class Login extends Component {
     }
     render() {
         return (
-            <ImageBackground source={bgloginImage} style={styles.backgroundContainer} blurRadius={1}>
+            <ImageBackground source={bgloginImage} style={styles.backgroundContainer} blurRadius={2}>
                 <View style={styles.logoContainer}>
                     {/* <Image source = {bgloginImage} style = {styles.logo} blurRadius={1}/> */}
                     <Text style={styles.logoText}>FOOD DELIVERY</Text>
@@ -30,6 +30,7 @@ export default class Login extends Component {
                     <TextInput
                         style={styles.input}
                         autoCapitalize = {'none'}
+                        keyboardType={'email-address'}
                         placeholder={'Email'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
@@ -61,7 +62,7 @@ export default class Login extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.btnLogin} onPress={() => { Actions.merchant() }}>
+                <TouchableOpacity style={styles.btnLogin} onPress={() => { Actions.push("merchant") }}>
                     <Text style={styles.textLogin}>Login</Text>
                     <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={styles.iconAngle} />
                 </TouchableOpacity>
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
         textShadowRadius: 20
     },
     inputContainer: {
-        marginTop: 10,
+        marginTop: 20,
     },
     input: {
         width: WIDTH - 55,
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     },
     viewAcc: {
         width: WIDTH - 70,
-        marginTop: 10,
+        marginTop: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
