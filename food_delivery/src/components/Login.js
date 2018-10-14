@@ -4,17 +4,25 @@ import {
     Text, ImageBackground,
     TextInput, Dimensions,
     TouchableOpacity,
-    Image
+    Image, AsyncStorage,
+    ActivityIndicator
 } from 'react-native';
 import bgloginImage from '../img/food_background_02.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions } from 'react-native-router-flux';
+import axios from 'axios';
 
 const { width: WIDTH } = Dimensions.get('window');
 export default class Login extends Component {
     constructor() {
         super();
-        this.state = { hidePassword: true }
+        this.state = {
+            username: '',
+            password: '',
+            hidePassword: true,
+            errNote: '',
+            loading: false
+        }
     }
     managePasswordVisibility = () => {
         this.setState({ hidePassword: !this.state.hidePassword });
@@ -29,11 +37,12 @@ export default class Login extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
-                        autoCapitalize = {'none'}
+                        autoCapitalize={'none'}
                         keyboardType={'email-address'}
                         placeholder={'Email'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
+                        onChangeText={text => { this.setState({ username: text, errNote: '' }) }}
                     />
                     <Icon name={'user'} size={24} color={'rgba(0, 0, 0, 0.7)'} style={styles.inputIcon} />
                 </View>
@@ -41,14 +50,15 @@ export default class Login extends Component {
                 <View style={styles.inputContainer}>
                     <TextInput
                         style={styles.input}
-                        autoCapitalize = {'none'}
+                        autoCapitalize={'none'}
                         placeholder={'Password'}
                         secureTextEntry={this.state.hidePassword}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
+                        onChangeText={text => { this.setState({ password: text, errNote: '' }) }}
                     />
                     <Icon name={'lock'} size={24} color={'rgba(0, 0, 0, 0.7)'} style={styles.inputIcon} />
-                    <TouchableOpacity style={styles.bntEye} onPress = { this.managePasswordVisibility }>
+                    <TouchableOpacity style={styles.bntEye} onPress={this.managePasswordVisibility}>
                         <Icon name={this.state.hidePassword ? 'eye' : 'eye-slash'} size={24} color={'rgba(0, 0, 0, 0.7)'}></Icon>
                     </TouchableOpacity>
                 </View>
@@ -61,8 +71,34 @@ export default class Login extends Component {
                         <Text style={styles.textForgetPassword}>Forget password</Text>
                     </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity style={styles.btnLogin} onPress={() => { Actions.push("merchant") }}>
+                <View style={styles.viewErrNote}>
+                    <Text style={styles.textErrNote}>{this.state.errNote}</Text>
+                    <ActivityIndicator size="small" color="#FF9800" animating={this.state.loading} />
+                </View>
+                <TouchableOpacity style={styles.btnLogin}
+                    onPress={() => {
+                        this.setState({ errNote: '' });
+                        this.setState({ loading: true, });
+                        axios.post('https://food-delivery-server.herokuapp.com/login', {
+                            email: this.state.username,
+                            password: this.state.password
+                        }).then(res => {
+                            //res.JSON();
+                            //console.log(res);
+                            this.setState({loading: false});
+                            _storeData = async () => {
+                                try {
+                                    await AsyncStorage.setItem('food_delivery_token', res.data.token);
+                                } catch (error) {
+                                    // Error saving data
+                                }
+                            }
+                            Actions.push("merchant");
+                        }).catch(err => {
+                            this.setState({loading: false});
+                            this.setState({ errNote: err.response.data.msg })
+                        })
+                    }}>
                     <Text style={styles.textLogin}>Login</Text>
                     <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={styles.iconAngle} />
                 </TouchableOpacity>
@@ -81,7 +117,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        marginBottom: 100
+        marginBottom: 80
     },
     logo: {
         width: 120,
@@ -126,7 +162,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         backgroundColor: '#EF6C00',
         justifyContent: 'center',
-        marginTop: 30
+        marginTop: 5
     },
     textLogin: {
         color: 'rgba(255, 255, 255, 1)',
@@ -145,6 +181,15 @@ const styles = StyleSheet.create({
         marginTop: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    viewErrNote: {
+        marginTop: 25,
+        //marginBottom: 5,
+        flexDirection: 'row',
+    },
+    textErrNote: {
+        color: 'red',
+        fontSize: 13,
     },
     textCreateAccount: {
         color: 'rgba(255, 255, 255, 0.9)',
