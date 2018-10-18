@@ -41,7 +41,7 @@ export default class MerchantDetail extends Component {
 
 const styles = StyleSheet.create({
     merchantContainer:{
-        backgroundColor: 'floralwhite'
+        //backgroundColor: 'floralwhite'
     },
     itemList:{
         marginTop: 10,

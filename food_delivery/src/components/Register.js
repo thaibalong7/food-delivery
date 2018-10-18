@@ -8,7 +8,6 @@ import {
     Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 const { width: WIDTH } = Dimensions.get('window');
 
@@ -96,7 +95,7 @@ export default class Register extends Component {
                                     'Confirm Email',
                                     'Please check your email to confirm',
                                     [
-                                        { text: 'OK', onPress: () => Actions.pop() } //quay về màn hình login },
+                                        { text: 'OK', onPress: () => this.props.navigation.goBack() } //quay về màn hình login },
                                     ],
                                     { cancelable: false }
                                 )
@@ -116,7 +115,7 @@ export default class Register extends Component {
                 </TouchableOpacity>
                 <View style={styles.loginHere}>
                     <Text style={styles.textAlready}>Already a member ? </Text>
-                    <TouchableOpacity onPress={() => Actions.pop()}>
+                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                         <Text style={styles.textLoginHere}>Login here</Text>
                     </TouchableOpacity>
                 </View>

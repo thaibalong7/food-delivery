@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import bgloginImage from '../img/food_background_02.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 
 const { width: WIDTH } = Dimensions.get('window');
@@ -64,10 +63,10 @@ export default class Login extends Component {
                 </View>
 
                 <View style={styles.viewAcc}>
-                    <TouchableOpacity onPress={() => Actions.register()}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
                         <Text style={styles.textCreateAccount}>Create a account</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Actions.forgetPassword()}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('ForgetPassword')}>
                         <Text style={styles.textForgetPassword}>Forget password</Text>
                     </TouchableOpacity>
                 </View>
@@ -77,27 +76,28 @@ export default class Login extends Component {
                 </View>
                 <TouchableOpacity style={styles.btnLogin}
                     onPress={() => {
-                        this.setState({ errNote: '' });
-                        this.setState({ loading: true, });
-                        axios.post('https://food-delivery-server.herokuapp.com/login', {
-                            email: this.state.username,
-                            password: this.state.password
-                        }).then(res => {
-                            //res.JSON();
-                            //console.log(res);
-                            this.setState({loading: false});
-                            _storeData = async () => {
-                                try {
-                                    await AsyncStorage.setItem('food_delivery_token', res.data.token);
-                                } catch (error) {
-                                    // Error saving data
-                                }
-                            }
-                            Actions.push("merchant");
-                        }).catch(err => {
-                            this.setState({loading: false});
-                            this.setState({ errNote: err.response.data.msg })
-                        })
+                        // this.setState({ errNote: '' });
+                        // this.setState({ loading: true, });
+                        // axios.post('https://food-delivery-server.herokuapp.com/login', {
+                        //     email: this.state.username,
+                        //     password: this.state.password
+                        // }).then(res => {
+                        //     //res.JSON();
+                        //     //console.log(res);
+                        //     this.setState({loading: false});
+                        //     _storeData = async () => {
+                        //         try {
+                        //             await AsyncStorage.setItem('food_delivery_token', res.data.token);
+                        //         } catch (error) {
+                        //             // Error saving data
+                        //         }
+                        //     }
+                        //     this.props.navigation.push('Merchant');
+                        // }).catch(err => {
+                        //     this.setState({loading: false});
+                        //     this.setState({ errNote: err.response.data.msg })
+                        // })
+                        this.props.navigation.push('Merchant');
                     }}>
                     <Text style={styles.textLogin}>Login</Text>
                     <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={styles.iconAngle} />
