@@ -4,7 +4,7 @@ import {
     FlatList,
 } from 'react-native';
 import ItemOfListMerchant from './ItemOfListMerchant'
-
+import AppStyle from '../theme'
 export default class Merchant extends Component {
     componentDidMount(){
         
@@ -36,14 +36,9 @@ export default class Merchant extends Component {
                     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
                     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
                     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },]}
-                    renderItem={({ item }) => <ItemOfListMerchant style={styles.itemList} action={() => { this.props.navigation.push('TabBar') }}></ItemOfListMerchant>}
+                    renderItem={({ item }) => <ItemOfListMerchant style={AppStyle.StyleMerchant.itemList} action={() => { this.props.navigation.push('TabBar') }}></ItemOfListMerchant>}
                 />
             </View>
         )
     }
 }
-const styles = StyleSheet.create({
-    itemList: {
-        marginTop: 10,
-    }
-})

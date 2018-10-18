@@ -6,11 +6,12 @@ import {
 } from 'react-native';
 const { width: WIDTH } = Dimensions.get('window');
 import ItemOfListMerchantDetail from './ItemOfListMerchantDetail'
+import AppStyle from '../theme';
 
 export default class MerchantDetail extends Component {
     render() {
         return (
-            <View style={styles.merchantContainer}>
+            <View style={AppStyle.StyleMerchantDetail.merchantContainer}>
                 <FlatList
                     data={[{ key:'1',decription: 'aaaaaaaaaaaaaaaaaa' }, 
                     { key:'2',decription: 'bbbbbbbbbbbbbbbbbb' },
@@ -32,18 +33,9 @@ export default class MerchantDetail extends Component {
                     { key:'1',decription: 'bbbbbbbbbbbbbbbbbb' },
                     { key:'1',decription: 'bbbbbbbbbbbbbbbbbb' },
                     { key:'1',decription: 'bbbbbbbbbbbbbbbbbb' },]}
-                    renderItem={({ item }) => <ItemOfListMerchantDetail style={styles.itemList}></ItemOfListMerchantDetail>}
+                    renderItem={({ item }) => <ItemOfListMerchantDetail style={AppStyle.StyleMerchantDetail.itemList}></ItemOfListMerchantDetail>}
                 />
             </View>
         )
     };
 };
-
-const styles = StyleSheet.create({
-    merchantContainer:{
-        //backgroundColor: 'floralwhite'
-    },
-    itemList:{
-        marginTop: 10,
-    }
-})
