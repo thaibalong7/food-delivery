@@ -7,10 +7,11 @@ import {
     Image, AsyncStorage,
     ActivityIndicator
 } from 'react-native';
-import bgloginImage from '../assets/img/food_background_02.jpg'
+import bgloginImage from '../../assets/img/food_background_02.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import AppStyle from '../theme'
+import AppStyle from '../../theme'
 import axios from 'axios';
+import apiConfig from '../../config/api'
 export default class Login extends Component {
     constructor() {
         super();
@@ -74,10 +75,11 @@ export default class Login extends Component {
                     <ActivityIndicator size="small" color="#FF9800" animating={this.state.loading} />
                 </View>
                 <TouchableOpacity style={AppStyle.StyleLogin.btnLogin}
+                    disabled={this.state.loading}
                     onPress={() => {
                         // this.setState({ errNote: '' });
                         // this.setState({ loading: true, });
-                        // axios.post('https://food-delivery-server.herokuapp.com/login', {
+                        // axios.post(apiConfig.login, {
                         //     email: this.state.username,
                         //     password: this.state.password
                         // }).then(res => {

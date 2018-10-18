@@ -5,8 +5,8 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
-import AppStyle from '../theme'
-import food from '../assets/img/demo_food.jpg'
+import AppStyle from '../../theme'
+import food from '../../assets/img/demo_food.jpg'
 export default class ItemOfListMerchant extends Component {
     render() {
         return (

@@ -1,7 +1,7 @@
-import Login from '../components/Login'
-import Register from '../components/Register'
-import ForgetPassword from '../components/ForgetPassword';
-import Merchant from '../components/Merchant';
+import Login from '../components/presentationals/Login'
+import Register from '../components/presentationals/Register'
+import ForgetPassword from '../components/presentationals/ForgetPassword';
+import Merchant from '../components/containers/MerchantContainer';
 import { createStackNavigator } from 'react-navigation';
 import TabBar from './tabbar';
 const RootStack = createStackNavigator({

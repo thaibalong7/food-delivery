@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import axios from 'axios';
-import AppStyle from '../theme'
+import AppStyle from '../../theme'
 
 export default class Register extends Component {
     constructor() {
@@ -45,7 +45,7 @@ export default class Register extends Component {
                         keyboardType={'email-address'}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
-                        onChangeText={text => { this.setState({ username: text,  errNote: '' }) }}
+                        onChangeText={text => { this.setState({ username: text, errNote: '' }) }}
                     />
                 </View>
                 <View style={AppStyle.StyleRegister.inputContainer}>
@@ -81,16 +81,17 @@ export default class Register extends Component {
                     <ActivityIndicator size="small" color="#FF9800" animating={this.state.loading} />
                 </View>
                 <TouchableOpacity style={AppStyle.StyleRegister.btnRegister}
+                    disabled={this.state.loading}
                     onPress={() => {
-                        this.setState({errNote: ''});
-                        this.setState({loading: true, });
+                        this.setState({ errNote: '' });
+                        this.setState({ loading: true, });
                         if (this.state.password.localeCompare(this.state.confirmPassword) === 0) {
                             axios.post('https://food-delivery-server.herokuapp.com/register', {
                                 email: this.state.username,
                                 password: this.state.password
                             }).then(res => {
                                 //res.JSON();
-                                this.setState({loading: false});
+                                this.setState({ loading: false });
                                 Alert.alert(
                                     'Confirm Email',
                                     'Please check your email to confirm',
@@ -101,12 +102,12 @@ export default class Register extends Component {
                                 )
 
                             }).catch(err => {
-                                this.setState({loading: false});
+                                this.setState({ loading: false });
                                 this.setState({ errNote: err.response.data.msg })
                             })
                         }
                         else {
-                            this.setState({loading: false});
+                            this.setState({ loading: false });
                             this.setState({ errNote: 'Confirm password not right' })
                         }
                     }}>

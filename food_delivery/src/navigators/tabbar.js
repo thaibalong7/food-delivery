@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
-import MerchantDetail from '../components/MerchantDetail';
-import User from '../components/User'
+import MerchantDetail from '../components/containers/MerchantDetailContainer';
+import User from '../components/presentationals/User'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 const TabBar = createBottomTabNavigator({
     MerchantDetail: {

@@ -6,7 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import AppStyle from '../theme'
+import AppStyle from '../../theme'
 
 export default class ForgetPassword extends Component {
     render() {

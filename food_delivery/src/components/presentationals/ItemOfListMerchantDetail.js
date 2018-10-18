@@ -6,7 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 const { width: WIDTH } = Dimensions.get('window');
-import food from '../assets/img/demo_food.jpg'
+import food from '../../assets/img/demo_food.jpg'
 export default class ItemOfListMerchantDetail extends Component {
     render() {
         return (
