@@ -6,16 +6,17 @@ import {
     TouchableOpacity
 } from 'react-native';
 const { width: WIDTH } = Dimensions.get('window');
-import food from '../../assets/img/demo_food.jpg'
+import food from '../../assets/img/food.png'
 export default class ItemOfListMerchantDetail extends Component {
     render() {
+        console.log(this.props.data)
         return (
             <View style={styles.itemContainer}>
-                <Image style={styles.imgItem} source={food}>
+                <Image style={styles.imgItem} source={(this.props.data.info.image === '' || this.props.data.info.image == null) ? food : { uri: this.props.data.info.image }}>
                 </Image>
                 <View style={styles.itemInfoContainer}>
                     <View>
-                        <Text style={styles.textTitle}>Name of food</Text>
+                        <Text style={styles.textTitle} numberOfLines={2}>{this.props.data.info.name}</Text>
                         <Text style={styles.textDecription}>Decription of that food kkkk kkkk kkkkk kkkkk kkkkkk</Text>
                     </View>
                     <TouchableOpacity style={styles.textMoreContainer}>

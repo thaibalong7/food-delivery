@@ -31,12 +31,13 @@ const StyleItemOfListMerchant = StyleSheet.create({
     },
     absoluteView: {
         position: 'absolute',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        width: WIDTH - 20,
     },
     textItem: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 28,
+        fontSize: 24,
         textAlign: 'center',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: { width: -1, height: 1 },

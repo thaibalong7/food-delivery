@@ -14,7 +14,7 @@ export default class MerchantDetail extends Component {
             <View style={AppStyle.StyleMerchantDetail.merchantContainer}>
                 <FlatList
                     data={this.props.data}
-                    renderItem={({ item }) => <ItemOfListMerchantDetail style={AppStyle.StyleMerchantDetail.itemList}></ItemOfListMerchantDetail>}
+                    renderItem={({ item }) => <ItemOfListMerchantDetail data={item} style={AppStyle.StyleMerchantDetail.itemList}></ItemOfListMerchantDetail>}
                 />
             </View>
         )
