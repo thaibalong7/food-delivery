@@ -5,14 +5,14 @@ import {
     TextInput,
     TouchableOpacity,
     Image, AsyncStorage,
-    ActivityIndicator
+    ActivityIndicator,
 } from 'react-native';
 import bgloginImage from '../../assets/img/food_background_02.jpg'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import AppStyle from '../../theme'
-import axios from 'axios';
-import apiConfig from '../../config/api'
-export default class Login extends Component {
+import { connect } from 'react-redux'
+import { authenticate } from './../../actions'
+class Login extends Component {
     constructor() {
         super();
         this.state = {
@@ -26,6 +26,39 @@ export default class Login extends Component {
     managePasswordVisibility = () => {
         this.setState({ hidePassword: !this.state.hidePassword });
     }
+    onLoginTouchUp = () => {
+        const { authenticate } = this.props;
+        this.setState({ errNote: '' });
+        this.setState({ loading: true, });
+        authenticate({
+            email: this.state.username,
+            password: this.state.password
+        })
+        this.setState({ loading: false });
+    }
+    componentDidMount() {
+        const { isAuthenticated } = this.props;
+        console.log('componentDidMount, isAuthenticated: ', isAuthenticated);
+        if (isAuthenticated) {
+            setTimeout(() => {
+                //Actions.Merchant();
+                this.props.navigation.push('Merchant');
+            }, 10);
+        }
+
+    }
+    componentWillReceiveProps(props) {
+        const { isAuthenticated } = props;
+        console.log('isAuthenticated: ', isAuthenticated);
+        if (isAuthenticated) {
+            setTimeout(() => {
+                //Actions.Merchant();
+                this.props.navigation.push('Merchant');
+            }, 10);
+        }
+    }
+
+
     render() {
         return (
             <ImageBackground source={bgloginImage} style={AppStyle.StyleLogin.backgroundContainer} blurRadius={2}>
@@ -71,14 +104,13 @@ export default class Login extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={AppStyle.StyleLogin.viewErrNote}>
-                    <Text style={AppStyle.StyleLogin.textErrNote}>{this.state.errNote}</Text>
-                    <ActivityIndicator size="small" color="#FF9800" animating={this.state.loading} />
+                    <Text style={AppStyle.StyleLogin.textErrNote}>{this.props.errNote}</Text>
+                    <ActivityIndicator size="small" color="#FF9800" animating={this.props.isAuthenticating} />
                 </View>
                 <TouchableOpacity style={AppStyle.StyleLogin.btnLogin}
                     disabled={this.state.loading}
                     onPress={() => {
-                        // this.setState({ errNote: '' });
-                        // this.setState({ loading: true, });
+                        this.onLoginTouchUp()
                         // axios.post(apiConfig.login, {
                         //     email: this.state.username,
                         //     password: this.state.password
@@ -98,7 +130,7 @@ export default class Login extends Component {
                         //     this.setState({loading: false});
                         //     this.setState({ errNote: err.response.data.msg })
                         // })
-                        this.props.navigation.push('Merchant');
+
                     }}>
                     <Text style={AppStyle.StyleLogin.textLogin}>Login</Text>
                     <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={AppStyle.StyleLogin.iconAngle} />
@@ -107,3 +139,18 @@ export default class Login extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.authenticationReducer.isAuthenticated,
+    isAuthenticating: state.authenticationReducer.isAuthenticating,
+    errNote: state.authenticationReducer.errNote,
+    accessToken: state.authenticationReducer.accessToken,
+})
+
+const mapDispatchToProps = dispatch => ({
+    authenticate: (data) => {
+        dispatch(authenticate(data));
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

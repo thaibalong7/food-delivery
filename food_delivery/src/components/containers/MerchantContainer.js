@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Merchant from '../presentationals/Merchant'
 import axios from 'axios';
 import apiConfig from '../../config/api'
-
+import {
+    BackHandler,
+    AppState
+} from 'react-native';
 export default class MerchantContainer extends React.Component {
     //do some thing to get data
     constructor(props) {
@@ -10,29 +13,12 @@ export default class MerchantContainer extends React.Component {
         this.state = {
             data: []
         }
-        // this.state = {
-        //     data: [{ key: '1', decription: 'aaaaaaaaaaaaaaaaaa' },
-        //     { key: '2', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '3', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '4', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '5', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '6', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },
-        //     { key: '1', decription: 'bbbbbbbbbbbbbbbbbb' },]
-        // }
     }
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+        AppState.addEventListener('change', this._handleAppStateChange);
+    }
+
     componentDidMount() {
         const url = apiConfig.getAllRestaurant + '/' + '20' + '&' + '1'
         axios.get(url).then(async (res) => {
@@ -49,10 +35,19 @@ export default class MerchantContainer extends React.Component {
         }).catch(err => {
 
         });
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+        AppState.addEventListener('change', this._handleAppStateChange);
+    }
+    handleBackPress = () => {
+        BackHandler.exitApp();
+        return true;
+    }
+    _handleAppStateChange = (nextAppState) => {
+
     }
     render() {
         return (
-            <Merchant data={this.state.data} action={(restaurantID) => { this.props.navigation.push('TabBar', {restaurantID: restaurantID}) }}></Merchant>
+            <Merchant data={this.state.data} action={(restaurantID) => { this.props.navigation.push('TabBar', { restaurantID: restaurantID }) }}></Merchant>
         )
     }
 
