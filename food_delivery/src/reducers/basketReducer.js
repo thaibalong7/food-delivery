@@ -1,7 +1,7 @@
 import { ADD_FOOD, DELETE_FOOD, EDIT_USER_PROFILE } from '../actions/types'
 
 const initialState = {
-    listFood: [],
+    listFood: [], //list of food in basket
 }
 
 const basketReducer = (prevState = initialState, action) => {
