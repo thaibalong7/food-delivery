@@ -5,7 +5,9 @@ import Merchant from '../components/containers/MerchantContainer';
 import Basket from '../components/presentationals/Basket'
 import { createStackNavigator } from 'react-navigation';
 import TabBar from './tabbar';
+import switchMerchant from './switchMerchant'
 import BasketButton from '../components/containers/BasketButtonContainer'
+import ChangeViewMerchantButton from '../components/presentationals/ChangeViewMerchantButton'
 // const basketButton = <TouchableOpacity>
 //     <IconBadge MainElement={
 //         <Icon style={{ marginRight: 20 }} name={'shopping-cart'} size={32} color={'white'}></Icon>
@@ -23,6 +25,17 @@ import BasketButton from '../components/containers/BasketButtonContainer'
 //         Hidden={false}
 //     />
 // </TouchableOpacity>;
+
+import React from 'react';
+
+onChangeView = (navigation, isMapView) => {
+    if (isMapView) {
+        navigation.navigate('MerchantView')
+    }
+    else { 
+        navigation.navigate('MerchantMapView')
+    }
+}
 
 const RootStack = createStackNavigator({
     Login: {
@@ -44,19 +57,21 @@ const RootStack = createStackNavigator({
         }
     },
     Merchant: {
-        screen: Merchant,
-        navigationOptions: {
+        screen: switchMerchant,
+        navigationOptions: ({ navigation }) => ({
             title: 'Merchant',
             headerStyle: {
                 backgroundColor: '#FF9800',
                 height: 45
             },
-            headerRight: BasketButton,
+            headerRight: <ChangeViewMerchantButton
+                navigation={(isMapView) => { onChangeView(navigation, isMapView) }}>
+            </ChangeViewMerchantButton>,
             headerTintColor: '#fff',
             headerTitleStyle: {
                 fontWeight: 'bold',
             },
-        },
+        }),
     },
     TabBar: {
         screen: TabBar,

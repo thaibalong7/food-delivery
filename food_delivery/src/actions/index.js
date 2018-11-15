@@ -1,9 +1,12 @@
-import { ADD_FOOD, DELETE_FOOD, EDIT_USER_PROFILE } from './types'
+import { ADD_FOOD, DELETE_FOOD } from './types'
 import { //Authentication
     AUTHENTICATION_REQUEST,
     AUTHENTICATION_SUCCESS,
     AUTHENTICATION_FAILURE,
     SIGN_OUT
+} from './types'
+import { //Merchant
+    CHANGE_VIEW
 } from './types'
 import apiConfig from './../config/api'
 import axios from 'axios';
@@ -44,5 +47,11 @@ export const authenticate = (data) => (dispatch) => {
 export const signOut = () => (dispatch) => {
     dispatch({
         type: SIGN_OUT,
+    });
+}
+
+export const ChangeViewMerchant = () => (dispatch) => {
+    dispatch({
+        type: CHANGE_VIEW,
     });
 }
