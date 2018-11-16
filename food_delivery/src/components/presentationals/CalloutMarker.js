@@ -11,7 +11,6 @@ const { width } = Dimensions.get('window');
 
 class CalloutMarker extends Component {
     render() {
-        console.log(this.props.RESTAURANT)
         return (
             <View style={styles.calloutComponent}>
                 <Image source={{ uri: this.props.RESTAURANT.image }} style={styles.imageView}></Image>

@@ -9,7 +9,7 @@ const { width: WIDTH } = Dimensions.get('window');
 import food from '../../assets/img/food.png'
 export default class ItemOfListMerchantDetail extends Component {
     render() {
-        console.log(this.props.data)
+        //console.log(this.props.data)
         return (
             <View style={styles.itemContainer}>
                 <Image style={styles.imgItem} source={(this.props.data.info.image === '' || this.props.data.info.image == null) ? food : { uri: this.props.data.info.image }}>

@@ -26,8 +26,12 @@ export default class Merchant extends Component {
         }
     }
     onRegionChange = (region) => {
-        //console.log(region)
-        //this.setState({ region });
+        this.setState({ region });
+        axios.get(hostAPI.host + '/restaurant/nearMe/' + region.latitude + '&' + region.longitude)
+            .then(rs => {
+                this.setState({ listMerchant: rs.data })
+            })
+        console.log('change region', this.state.listMerchant)
     }
     onChangeTextSearch = (text) => {
         console.log(text)
@@ -35,6 +39,17 @@ export default class Merchant extends Component {
     viewMerchantDetail = (restaurantID) => {
         console.log('view merchant detail', restaurantID)
         this.props.navigation.push('TabBar', { restaurantID: restaurantID })
+    }
+    changeRegion = (latitude, longitude) => {
+        const newRegion = {
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+        }
+        this.setState({
+            region: newRegion
+        })
     }
     componentDidMount() {
         axios.get(hostAPI.host + '/restaurant/nearMe/' + this.state.region.latitude + '&' + this.state.region.longitude)
@@ -50,6 +65,7 @@ export default class Merchant extends Component {
                 onRegionChange={this.onRegionChange}
                 onChangeTextSearch={this.onChangeTextSearch}
                 viewMerchantDetail={this.viewMerchantDetail}
+                changeRegion={this.changeRegion}
             />
         )
     }

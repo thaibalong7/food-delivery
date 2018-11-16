@@ -14,6 +14,12 @@ Map.propTypes = {
     provider: ProviderPropType,
 };
 export default class MerchantMap extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            countChangeRegion: 0
+        }
+    }
     componentDidMount() {
 
     }
@@ -24,43 +30,74 @@ export default class MerchantMap extends Component {
     onClearSearch = () => {
         console.log('search text is cleared')
     }
+    // debounce = (region, func, wait) => {
+    //     var timeout;
+    //     console.log('set ... region')
+    //     return function () {
+    //         let executeFunc = function () {
+    //             func(region);
+    //             console.log('set region')
+    //         };
+    //         clearTimeout(timeout);
+    //         timeout = setTimeout(executeFunc, wait);
+    //     };
+    // };
+    // setNewRegion = debounce(region)
     render() {
         return (
             <View style={AppStyle.StyleMerchantMap.container}>
-
                 <MapView
                     provider={this.props.provider}
                     style={AppStyle.StyleMerchantMap.map}
                     initialRegion={this.props.region}
-                    onPress={e => console.log(e.nativeEvent)}
+                    onPress={(e) => {
+                        console.log(e.nativeEvent)
+                        //this.props.changeRegion(e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude)
+                    }}
                     onRegionChange={
                         (region) => {
-                            this.props.onRegionChange(region)
+                            // console.log(region)
+                            // const setNewRegion = this.debounce(
+                            //     region,
+                            //     (region) => { this.props.onRegionChange(region) },
+                            //     1000
+                            // );
+                            // setNewRegion();
+                            this.setState({
+                                countChangeRegion: this.state.countChangeRegion + 1
+                            })
+                            console.log(this.state.countChangeRegion);
+                            if (this.state.countChangeRegion === 20){
+                                this.props.onRegionChange(region);
+                                this.setState({
+                                countChangeRegion: 0
+                            })
+                            }
                         }
                     }
+                //onPoiClick={(e) => { this.props.changeRegion(e.coordinate.latitude, e.coordinate.longitude) }}
                 >
-                    {this.props.listMerchant.map((marker, i) => (
-                        <Marker
-                            key={i + 1}
-                            coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
-                            title={marker.name}
-                        >
-                            <Image source={marker_food} style={{ width: 38, height: 38 }} />
-                            <Callout onPress={() => {
-                                this.props.viewMerchantDetail(marker.id)
-                            }
-                            }>
-                                <CalloutMarker RESTAURANT={marker.RESTAURANT}></CalloutMarker>
-                            </Callout>
-                        </Marker>
-                    ))}
+                    {
+                        this.props.listMerchant.map((marker, i) => (
+                            <Marker
+                                key={i + 1}
+                                coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
+                                title={marker.name}>
+                                <Image source={marker_food} style={{ width: 38, height: 38 }} />
+                                <Callout onPress={() => {
+                                    this.props.viewMerchantDetail(marker.id)
+                                }}>
+                                    <CalloutMarker RESTAURANT={marker.RESTAURANT}></CalloutMarker>
+                                </Callout>
+                            </Marker>
+                        ))
+                    }
                     <Marker
                         key={0}
                         coordinate={{
                             latitude: this.props.region.latitude,
                             longitude: this.props.region.longitude,
-                        }}
-                    >
+                        }}>
                         <Image source={marker_this} style={{ width: 38, height: 38 }} />
                     </Marker>
                 </MapView>
