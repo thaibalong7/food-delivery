@@ -5,7 +5,8 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-export default class basketButton extends Component {
+import {connect} from 'react-redux'
+class basketButton extends Component {
     render() {
         return (
             <TouchableOpacity>
@@ -30,3 +31,4 @@ export default class basketButton extends Component {
 }
 
 //map this component to store in here ...
+export default connect(null, null)(basketButton)

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet, View,
+    View,
     Text, ImageBackground,
     TextInput,
     TouchableOpacity,
-    Image, AsyncStorage,
     ActivityIndicator,
 } from 'react-native';
 import bgloginImage from '../../assets/img/food_background_02.jpg'

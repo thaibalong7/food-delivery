@@ -20,7 +20,7 @@ export default class ItemOfListMerchantDetail extends Component {
                         <Text style={styles.textDecription}>Decription of that food kkkk kkkk kkkkk kkkkk kkkkkk</Text>
                     </View>
                     <TouchableOpacity style={styles.textMoreContainer}>
-                        <Text style={styles.textMore}>More...</Text>
+                        <Text style={styles.textMore}>Add...</Text>
                     </TouchableOpacity>
                 </View>
             </View>

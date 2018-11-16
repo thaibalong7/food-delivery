@@ -13,7 +13,7 @@ const authenticationConfig = {
 const merchantConfig = {
     key: 'merchant',
     storage,
-    //blacklist: [],
+    blacklist: ['isMapView'],
 }
 
 export default combineReducers({

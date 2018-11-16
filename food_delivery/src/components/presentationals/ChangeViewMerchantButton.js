@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import {
     TouchableOpacity
 } from 'react-native';
@@ -14,9 +14,9 @@ class ChangeViewMerchantButton extends Component {
         console.log(this.props)
         return (
             <TouchableOpacity onPress={this.onChangeViewPress} >
-                <Ionicons name={'ios-notifications-outline'}
+                <Icon name={this.props.isMapView ? 'list-ul' : 'map-o'}
                     style={{ marginRight: 20 }}
-                    size={32} color={'white'} />
+                    size={28} color={'white'} />
             </TouchableOpacity>
         )
     };
