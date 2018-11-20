@@ -4,7 +4,8 @@ import { en } from './en'
 
 I18n.translations = {
     'vi-VN': vi,
-    'en': en,
+    'en-US': en,
+    'en-GB': en,
 }
 
 export const strings = (str) => {

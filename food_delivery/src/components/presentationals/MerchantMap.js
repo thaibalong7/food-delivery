@@ -66,12 +66,11 @@ export default class MerchantMap extends Component {
                             this.setState({
                                 countChangeRegion: this.state.countChangeRegion + 1
                             })
-                            console.log(this.state.countChangeRegion);
-                            if (this.state.countChangeRegion === 20){
+                            if (this.state.countChangeRegion === 20) {
                                 this.props.onRegionChange(region);
                                 this.setState({
-                                countChangeRegion: 0
-                            })
+                                    countChangeRegion: 0
+                                })
                             }
                         }
                     }
@@ -111,7 +110,7 @@ export default class MerchantMap extends Component {
                         containerStyle={AppStyle.StyleMerchantMap.searchContainer}
                         inputStyle={AppStyle.StyleMerchantMap.input}
                         placeholder='Type Here...' />
-                    <Text style={AppStyle.StyleMerchantMap.textAddress}>this is address</Text>
+                    <Text style={AppStyle.StyleMerchantMap.textAddress} numberOfLines={1}>{this.props.address}</Text>
                 </View>
             </View>
         )
