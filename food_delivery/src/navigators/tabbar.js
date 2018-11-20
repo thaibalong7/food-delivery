@@ -3,17 +3,18 @@ import { createBottomTabNavigator } from 'react-navigation';
 import MerchantDetail from '../components/containers/MerchantDetailContainer';
 import User from '../components/presentationals/User'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { strings } from '../../localization/i18n'
 const TabBar = createBottomTabNavigator({
     MerchantDetail: {
         screen: MerchantDetail,
         navigationOptions: {
-            tabBarLabel: 'Merchant Detail',
+            tabBarLabel: strings('MerchantDetail'),
         }
     },
     User: {
         screen: User,
         navigationOptions: {
-            tabBarLabel: 'User',
+            tabBarLabel: strings('User'),
         }
     }
 },
@@ -41,8 +42,5 @@ const TabBar = createBottomTabNavigator({
         },
     }
 )
-
-
-
 
 export default TabBar;

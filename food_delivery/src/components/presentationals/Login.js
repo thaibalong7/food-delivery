@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import AppStyle from '../../theme'
 import { connect } from 'react-redux'
 import { authenticate } from './../../actions'
+import { strings } from '../../../localization/i18n'
 class Login extends Component {
     constructor() {
         super();
@@ -82,7 +83,8 @@ class Login extends Component {
                     <TextInput
                         style={AppStyle.StyleLogin.input}
                         autoCapitalize={'none'}
-                        placeholder={'Password'}
+                        //placeholder={'Password'}
+                        placeholder={strings('Password')}
                         secureTextEntry={this.state.hidePassword}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
@@ -96,10 +98,10 @@ class Login extends Component {
 
                 <View style={AppStyle.StyleLogin.viewAcc}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
-                        <Text style={AppStyle.StyleLogin.textCreateAccount}>Create a account</Text>
+                        <Text style={AppStyle.StyleLogin.textCreateAccount}>{strings('Create_a_account')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('ForgetPassword')}>
-                        <Text style={AppStyle.StyleLogin.textForgetPassword}>Forget password</Text>
+                        <Text style={AppStyle.StyleLogin.textForgetPassword}>{strings('Forget_password')}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={AppStyle.StyleLogin.viewErrNote}>
@@ -131,7 +133,7 @@ class Login extends Component {
                         // })
 
                     }}>
-                    <Text style={AppStyle.StyleLogin.textLogin}>Login</Text>
+                    <Text style={AppStyle.StyleLogin.textLogin}>{strings('Login')}</Text>
                     <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={AppStyle.StyleLogin.iconAngle} />
                 </TouchableOpacity>
             </ImageBackground>

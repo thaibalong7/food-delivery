@@ -8,6 +8,7 @@ import TabBar from './tabbar';
 import switchMerchant from './switchMerchant'
 import BasketButton from '../components/containers/BasketButtonContainer'
 import ChangeViewMerchantButton from '../components/presentationals/ChangeViewMerchantButton'
+import { strings } from '../../localization/i18n'
 // const basketButton = <TouchableOpacity>
 //     <IconBadge MainElement={
 //         <Icon style={{ marginRight: 20 }} name={'shopping-cart'} size={32} color={'white'}></Icon>
@@ -59,7 +60,7 @@ const RootStack = createStackNavigator({
     Merchant: {
         screen: switchMerchant,
         navigationOptions: ({ navigation }) => ({
-            title: 'Merchant',
+            title: strings('Merchant'),
             headerStyle: {
                 backgroundColor: '#FF9800',
                 height: 45

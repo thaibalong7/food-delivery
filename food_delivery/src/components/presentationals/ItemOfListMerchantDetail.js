@@ -7,9 +7,11 @@ import {
 } from 'react-native';
 const { width: WIDTH } = Dimensions.get('window');
 import food from '../../assets/img/food.png'
+import { strings } from '../../../localization/i18n'
 export default class ItemOfListMerchantDetail extends Component {
     render() {
         //console.log(this.props.data)
+        console.log(strings('Add'))
         return (
             <View style={styles.itemContainer}>
                 <Image style={styles.imgItem} source={(this.props.data.info.image === '' || this.props.data.info.image == null) ? food : { uri: this.props.data.info.image }}>
@@ -20,7 +22,7 @@ export default class ItemOfListMerchantDetail extends Component {
                         <Text style={styles.textDecription}>Decription of that food kkkk kkkk kkkkk kkkkk kkkkkk</Text>
                     </View>
                     <TouchableOpacity style={styles.textMoreContainer}>
-                        <Text style={styles.textMore}>Add...</Text>
+                        <Text style={styles.textMore}>{strings('Add')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

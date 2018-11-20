@@ -10,6 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome'
 import axios from 'axios';
 import AppStyle from '../../theme'
+import { strings } from '../../../localization/i18n'
 
 export default class Register extends Component {
     constructor() {
@@ -26,7 +27,7 @@ export default class Register extends Component {
         return (
             <ImageBackground style={AppStyle.StyleRegister.backgroundContainer}>
                 <View style={AppStyle.StyleRegister.textTitleContainer}>
-                    <Text style={AppStyle.StyleRegister.textTitle}>Register</Text>
+                    <Text style={AppStyle.StyleRegister.textTitle}>{strings('Register')}</Text>
                 </View>
                 {/* <View style={AppStyle.StyleRegister.inputContainer}>
                     <TextInput
@@ -52,7 +53,7 @@ export default class Register extends Component {
                     <TextInput
                         style={AppStyle.StyleRegister.input}
                         autoCapitalize={'none'}
-                        placeholder={'Password'}
+                        placeholder={strings('Password')}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
                         secureTextEntry={true}
@@ -63,7 +64,7 @@ export default class Register extends Component {
                     <TextInput
                         style={AppStyle.StyleRegister.input}
                         autoCapitalize={'none'}
-                        placeholder={'Confirm Password'}
+                        placeholder={strings('Confirm_password')}
                         placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                         underlineColorAndroid='transparent'
                         secureTextEntry={true}
@@ -111,13 +112,13 @@ export default class Register extends Component {
                             this.setState({ errNote: 'Confirm password not right' })
                         }
                     }}>
-                    <Text style={AppStyle.StyleRegister.textRegister}>Register</Text>
+                    <Text style={AppStyle.StyleRegister.textRegister}>{strings('Register')}</Text>
                     <Icon name={'angle-right'} size={26} color={'rgba(255, 255, 255, 0.7)'} style={AppStyle.StyleRegister.iconAngle} />
                 </TouchableOpacity>
                 <View style={AppStyle.StyleRegister.loginHere}>
-                    <Text style={AppStyle.StyleRegister.textAlready}>Already a member ? </Text>
+                    <Text style={AppStyle.StyleRegister.textAlready}>{strings('Already_a_member')}</Text>
                     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                        <Text style={AppStyle.StyleRegister.textLoginHere}>Login here</Text>
+                        <Text style={AppStyle.StyleRegister.textLoginHere}>{strings('Login')}</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
